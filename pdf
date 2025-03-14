@@ -1,0 +1,16 @@
+#!/bin/sh
+
+pdf_cmd="mupdf"
+
+if [ $# = 0 ]; then
+   NO_TERM=1
+   temp="$(mktemp --suffix=.pdf)"
+   cat > "$temp"
+   trap 'rm $temp' EXIT ERR TERM
+fi
+
+if [ "$NO_TERM" ]; then
+    $pdf_cmd "$temp"
+else
+    $pdf_cmd "$1"
+fi

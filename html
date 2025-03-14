@@ -1,0 +1,16 @@
+#!/bin/sh
+
+VIEWER="mupdf"
+
+if [ $# = 0 ]; then
+   NO_TERM=1
+   temp="$(mktemp /tmp/temp_XXXXXX.html)"
+   cat > "$temp"
+   trap "rm $temp" EXIT ERR TERM
+fi
+
+if [ $NO_TERM ]; then
+	$VIEWER "$temp"
+else
+	$VIEWER "$1"
+fi

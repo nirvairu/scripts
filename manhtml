@@ -1,0 +1,2 @@
+#!/bin/sh
+man -T html -O style="$HOME/misc/man.css" $@ | html

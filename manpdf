@@ -1,0 +1,3 @@
+#!/bin/sh
+man -T pdf -O paper=140x195 "$1" | pdf
+#man -Tpdf "$1" | pdf
