@@ -1,0 +1,21 @@
+#!/bin/sh
+while getopts sf var
+do
+    case $var in
+	s) SCREEN=1;;
+	f) export GRIM_DEFAULT_DIR="$HOME/media/pics/shots/";;
+    esac
+done
+if [ "$GRIM_DEFAULT_DIR" ] && [ "$SCREEN" ]; then
+    echo "file and screen"
+    grim -t png
+elif [ "$GRIM_DEFAULT_DIR" ]; then
+    echo "file $GRIM_DEFAULT_DIR"
+    slurp |grim -t png -g -
+elif [ "$SCREEN" ]; then
+    echo "screen"
+    grim | wl-copy
+else
+    echo "base"
+    slurp | grim -g - - |wl-copy
+fi
