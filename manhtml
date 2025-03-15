@@ -1,2 +1,6 @@
 #!/bin/sh
-man -T html -O style="$HOME/misc/man.css" $@ | html
+
+man -T html $@ | html
+
+# Old version with a hardcoded CSS path, may refactor this into an option
+# man -T html -O style="$HOME/misc/man.css" $@ | html
