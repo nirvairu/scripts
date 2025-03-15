@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# Hacky generalization of `html` and `pdf`
+ 
+[ $# -lt 2 ] && { echo "Usage: $0 <viewer> <suffix> [file]"; exit 1; }
+
+viewer="$1"
+suffix="${2:-abc}"
+shift 2
+
+if [ $# = 0 ]; then
+   NO_TERM=1
+   temp="$(mktemp --suffix=.pdf)"
+   cat > "$temp"
+   trap 'rm $temp' EXIT ERR TERM
+fi
+
+if [ "$NO_TERM" ]; then
+    $viewer "$temp"
+else
+    $viewer "$1"
+fi

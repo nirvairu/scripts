@@ -1,21 +1,32 @@
 #!/bin/sh
+
+if [ $# -eq 0 ]; then
+    cat <<EOF
+    Usage: $0 [-s] [-f]
+      -s  Capture the entire screen
+      -f  Save the screenshot to the default directory
+EOF
+    exit 1
+fi
+
 while getopts sf var
 do
     case $var in
-	s) SCREEN=1;;
-	f) export GRIM_DEFAULT_DIR="$HOME/media/pics/shots/";;
+    s) SCREEN=1;;
+    f) export GRIM_DEFAULT_DIR="${XDG_PICTURES_DIR:-$HOME/Pictures}";;
     esac
 done
+
 if [ "$GRIM_DEFAULT_DIR" ] && [ "$SCREEN" ]; then
-    echo "file and screen"
+    echo "Capturing the entire screen and saving to $GRIM_DEFAULT_DIR"
     grim -t png
 elif [ "$GRIM_DEFAULT_DIR" ]; then
-    echo "file $GRIM_DEFAULT_DIR"
-    slurp |grim -t png -g -
+    echo "Saving screenshot to $GRIM_DEFAULT_DIR"
+    slurp | grim -t png -g -
 elif [ "$SCREEN" ]; then
-    echo "screen"
+    echo "Capturing the entire screen and copying to clipboard"
     grim | wl-copy
 else
-    echo "base"
-    slurp | grim -g - - |wl-copy
+    echo "Capturing selected area and copying to clipboard"
+    slurp | grim -g - - | wl-copy
 fi

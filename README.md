@@ -1,18 +1,14 @@
 ## Assorted Scripts
 
- - [`pdf`](./pdf)
-   Wrapper around `mupdf` allowing it to support pipes.
+  - [`pdf`](./pdf) and [`html`](./html) Are wrappers around `mupdf` _(`mupdf-gl`)_ which can render
+  piped html and pdf documents.
 
- - [`manpdf`](./manpdf)
-   Wrapper around `manpdf` and `man` which renders manpages in a PDF Viewer.
+  - [`viewer`](./viewer) a generalization of the above scripts to wrap any command that supports a
+  file with an extension to work with pipes.
+  
+  - [`manpdf`](./manpdf) and [`manhtml`](./manhtml) Are wrappers around `pdf` and `html` which view
+  manpages in the respective formats
 
- - [`html`](./html)
-   Wrapper around `mupdf` _~~(or optionally qutebrowser)~~_ to render piped html files.
-
- - [`manhtml`](./manhtml)
-   Wrapper around `html` and `man` which renders manpages as html.
-   > **NOTE:** Has a hardcoded path for a CSS file.
-
- - [`clipshot`](./clipshot)
-   A tool for capturing screenshots for sway/other wayland compositors, it has options to either
-   the captured image to a file and to either capture a rectangular region or the whole screen
+  - [`clipshot`](./clipshot)
+    A tool for capturing screenshots for sway/other wayland compositors, it has options to either
+    the captured image to a file and to either capture a rectangular region or the whole screen
