@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+
+# Outputs command with arguements to stdout (which can be redirected to a file)
+# This can be used to get a log of commands like cp rm and mv which can be used
+# to reproduce changes accross a network ((untested))
+#
+# Example: ecmd foo "foo bar" >> cmds
+# . cmds
+# copy this to the remote directory and do the same
+# ensure that the subdirectories are the same?
+  
+
+
+_usage() {
+cat << EOF
+usage: $0 <command> [arguements] 
+EOF
+}
+
+[ "$#" -lt 1 ] && _usage && exit 1 
+
+_cmd="$1"; shift 1
+# Iterates through arguements and qoutes them 
+for i in "$@"; do
+  ALIST="$ALIST "\""$i"\"
+done
+
+printf "$_cmd $ALIST\n" 
