@@ -1,15 +1,17 @@
 #!/usr/bin/env sh
 
+# Note: Doesn't automatically escape backslashes and quotes and single quotes
+#       may clobber the output. On the other hand they should already arrive
+#       escaped because as shell arguements. I haven't tested those cases 
+#       rigorously. Newlines appear to work fine.
+ 
 # Outputs command with arguments to stdout (which can be redirected to a file)
 # This can be used to get a log of commands like cp rm and mv which can be used
-# to reproduce changes accross a network (I haven't yet tested this); however
-# the output is correct with files with spaces and should work for newlines if
-# the shell sees it correctly.
+# to reproduce changes accross a network
 #
-# Example: ecmd foo "foo bar" >> cmds
-# . cmds
-# copy this to the remote directory and do the same
-# ensure that the subdirectories are the same?
+# Example: > ecmd foo "foo bar" >> cmds
+#          # copy/pipe it to a remote using and ensure the parent dirs match
+#          > . cmds
   
 
 
@@ -22,7 +24,7 @@ EOF
 [ "$#" -lt 1 ] && { _usage ; exit 1;} 
 
 _cmd="$1"; shift 1
-# Iterates through arguments and quotes them 
+# Iterates through arguments and quotes them
 for i in "$@"; do
   ALIST="$ALIST "\""$i"\"
 done
