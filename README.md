@@ -4,7 +4,7 @@
   arguements according to the shell, this is useful as the output can be redirected to a file
   and can be used to sync changes in filenames and deletions by sourcing through a shell.\
   
-  [`ecall`](./ecall) wraps symlinks of the form `e<cmd>` to `ecmd <cmd>`, [`emv`](./emv) 
+  [`callecmd`](./callecmd) wraps symlinks of the form `e<cmd>` to `ecmd <cmd>`, [`emv`](./emv) 
   and erm are such examples
 
   - [`pdf`](./pdf) and [`html`](./html) Are wrappers around `mupdf` _(`mupdf-gl`)_ which can render
