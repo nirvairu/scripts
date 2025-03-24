@@ -5,7 +5,7 @@ _basecmd="$(basename "$0")"
 _cmd="${_basecmd#e}"
 
 if [-z "$_cmd"]; then
-    echo "$0 has an invalid form, should be e<cmd>" >&2
+    echo "Invalid invocation, $_basecmd is not a symlink or invalid" >&2
     exit 1
 fi
 
