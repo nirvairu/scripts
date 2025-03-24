@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+# Wraps symlinks of the form e<cmd> to ecmd <cmd>
+_basecmd="$(basename $0)"
+_cmd="${_basecmd#e}"
+
+ecmd "$_cmd" "$@"
